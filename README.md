@@ -1,1 +1,1 @@
-# game-center
+# Game Center App
