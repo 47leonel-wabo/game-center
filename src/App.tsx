@@ -1,6 +1,7 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import "./App.css";
 import NavBar from "./components/NavBar";
+import ColorModeSwitch from "./components/ColorModeSwitch";
 function App() {
   return (
     <Grid
@@ -18,7 +19,10 @@ function App() {
       gap={1}
     >
       <GridItem area="header">
-        <NavBar />
+        <HStack justifyContent={"space-between"}>
+          <NavBar />
+          <ColorModeSwitch />
+        </HStack>
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" bg="blue">
