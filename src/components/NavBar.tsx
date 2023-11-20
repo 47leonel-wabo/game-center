@@ -1,12 +1,12 @@
-import { HStack, Heading, Image, Text } from "@chakra-ui/react";
-import logo from "../assets/controller_logo.webp";
+import { HStack, Heading, Image } from "@chakra-ui/react";
+import logo from "../assets/controller.png";
 
 const NavBar = () => {
   return (
-    <HStack>
-      <Image src={logo} boxSize="50px" objectFit={"fill"} />
+    <HStack p={4}>
+      <Image src={logo} boxSize="32px" objectFit={"contain"} />
       <Heading as="h2" size="md">
-        Game Store
+        Game Hub
       </Heading>
     </HStack>
   );
