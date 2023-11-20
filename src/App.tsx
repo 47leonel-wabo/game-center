@@ -2,6 +2,7 @@ import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import ColorModeSwitch from "./components/ColorModeSwitch";
+import GamesGrid from "./components/GamesGrid";
 function App() {
   return (
     <Grid
@@ -29,8 +30,8 @@ function App() {
           Aside
         </GridItem>
       </Show>
-      <GridItem area="main" bg="dodgerblue">
-        Main
+      <GridItem area="main">
+        <GamesGrid />
       </GridItem>
       <GridItem area="footer" bg="#3e3e3e">
         Footer
