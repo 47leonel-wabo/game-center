@@ -1,24 +1,30 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import "./App.css";
+import NavBar from "./components/NavBar";
 function App() {
   return (
     <Grid
       templateAreas={{
-        base: `"header" "main" "footer"`,
-        lg: `"header header" "aside main" "footer footer"`,
+        base: `"header" 
+               "main" 
+               "footer"`,
+        lg: `"header header" 
+             "aside main" 
+             "footer footer"`,
+        xl: `"header header header" 
+             "aside main main" 
+             "footer footer footer"`,
       }}
       gap={1}
     >
-      <GridItem area="header" bg="red">
-        Header
+      <GridItem area="header">
+        <NavBar />
       </GridItem>
-      <GridItem area="header">Header</GridItem>
       <Show above="lg">
         <GridItem area="aside" bg="blue">
           Aside
         </GridItem>
       </Show>
-
       <GridItem area="main" bg="dodgerblue">
         Main
       </GridItem>
