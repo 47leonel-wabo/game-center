@@ -1,25 +1,17 @@
-import axiosInstance from "./api-client";
+import createService from "./http-service";
 
 export interface Game {
   id: number;
   name: string;
 }
 
-interface ResultGameRequest {
+export interface ResultGameRequest {
   count: number;
   next: string;
   previous: string;
   results: Game[];
 }
 
-class GameService {
-  getGames() {
-    const controller = new AbortController();
-    const resultPromise = axiosInstance.get<ResultGameRequest>("/games", {
-      signal: controller.signal,
-    });
-    return { resultPromise, controller };
-  }
-}
+const gameService = createService("/games");
 
-export default new GameService();
+export default gameService;
