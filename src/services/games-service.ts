@@ -3,6 +3,7 @@ import createService from "./http-service";
 export interface Game {
   id: number;
   name: string;
+  background_image: string;
 }
 
 export interface ResultGameRequest {
