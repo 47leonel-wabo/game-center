@@ -1,23 +1,8 @@
 import { Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import gamesService, {
-  Game,
-  ResultGameRequest,
-} from "../services/games-service";
+import useGames from "../hooks/useGames";
 
 const GamesGrid = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState<string>("");
-
-  useEffect(() => {
-    const { resultPromise, controller } =
-      gamesService.getAll<ResultGameRequest>();
-    resultPromise
-      .then(({ data }) => setGames(data.results))
-      .catch((error) => setError(error.message));
-
-    return () => controller.abort();
-  }, []);
+  const { games, error, isLoading } = useGames();
 
   return (
     <>
