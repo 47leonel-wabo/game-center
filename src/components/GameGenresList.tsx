@@ -15,9 +15,10 @@ import { Genre } from "../services/genres-service";
 
 interface Props {
   onGenreSelected: (genre: Genre) => void;
+  selectedGenre?: Genre | null;
 }
 
-const GameGenresList = ({ onGenreSelected }: Props) => {
+const GameGenresList = ({ selectedGenre, onGenreSelected }: Props) => {
   const { genres, isGenreLoading, genreError } = useGenre();
 
   if (isGenreLoading) return <GameGenreSkeleton />;
@@ -41,7 +42,11 @@ const GameGenresList = ({ onGenreSelected }: Props) => {
                 alt={genre.name}
                 marginX={2}
               />
-              <GenreItem genre={genre} handleClick={onGenreSelected} />
+              <GenreItem
+                genre={genre}
+                selectedGenre={selectedGenre}
+                handleClick={onGenreSelected}
+              />
             </ListItem>
           ))}
       </List>
