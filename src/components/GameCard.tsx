@@ -16,7 +16,7 @@ const GameCard = ({ game }: Props) => {
             ? game.name.substring(0, 24).concat("...")
             : game.name}
         </Heading>
-        <HStack>
+        <HStack marginY={1}>
           {game.parent_platforms.map((value) => (
             <PlatformIcon key={value.platform.id} slug={value.platform.slug} />
           ))}
