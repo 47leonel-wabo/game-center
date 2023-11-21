@@ -1,11 +1,14 @@
 import { Heading, Text, VStack } from "@chakra-ui/react";
 import useGenre from "../hooks/useGenres";
 import GenreItem from "./GenreItem";
+import GameGenreSkeleton from "./skeleton/GameGenreSkeleton";
 
 const GameGenresList = () => {
   const { genres, isGenreLoading, genreError } = useGenre();
 
-  if (isGenreLoading) return <Text padding={2}>Loading</Text>;
+  if (isGenreLoading) return <GameGenreSkeleton />;
+
+  console.log("GENRES", genres);
 
   return (
     <VStack>
