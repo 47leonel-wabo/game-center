@@ -8,13 +8,6 @@ export interface Genre {
   image_background: string;
 }
 
-export interface ResultGenreRequest {
-  count: number;
-  next: string;
-  previous: string;
-  results: Genre[];
-}
-
 const genreService = createService("/genres");
 
 export default genreService;

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import genreService, {
-  Genre,
-  ResultGenreRequest,
-} from "../services/genres-service";
+import genreService, { Genre } from "../services/genres-service";
 import { CanceledError } from "axios";
+import { RAWGRequestResponse } from "./useData";
+
+// Even as this approach is working it's better
+// to use 'useData<T>(endpoint)' directly in order to avoid code
+// duplication and multiple imports - clean code
 
 const useGenre = () => {
   const [genres, setGenres] = useState<Genre[]>([]);
@@ -13,7 +15,7 @@ const useGenre = () => {
   useEffect(() => {
     setGenresLoading(true);
     const { resultPromise, controller } =
-      genreService.getAll<ResultGenreRequest>();
+      genreService.getAll<RAWGRequestResponse<Genre>>();
     resultPromise
       .then(({ data }) => setGenres(data.results))
       .catch((error) => {

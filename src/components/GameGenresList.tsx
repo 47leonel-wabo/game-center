@@ -8,8 +8,6 @@ const GameGenresList = () => {
 
   if (isGenreLoading) return <GameGenreSkeleton />;
 
-  console.log("GENRES", genres);
-
   return (
     <VStack>
       <Heading as="h3" size="sm">

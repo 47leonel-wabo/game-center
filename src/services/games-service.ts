@@ -1,20 +1,3 @@
-import createService from "./http-service";
-
-export interface ResultGameRequest {
-  count: number;
-  next: string;
-  previous: string;
-  results: Game[];
-}
-
-export interface Game {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: PlatformObject[];
-  metacritic: number;
-}
-
 export interface PlatformObject {
   platform: Platform;
 }
@@ -34,6 +17,6 @@ export const cropImage = (
   return `${seqTab[0]}crop/${width}/${height}/games${seqTab[1]}`;
 };
 
-const gameService = createService("/games");
+// const gameService = createService("/games");
 
-export default gameService;
+// export default gameService;
