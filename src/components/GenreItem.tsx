@@ -1,15 +1,16 @@
-import { HStack, Text } from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
 import { Genre } from "../services/genres-service";
 
 interface Props {
   genre: Genre;
+  handleClick: (genre: Genre) => void;
 }
 
-const GenreItem = ({ genre }: Props) => {
+const GenreItem = ({ genre, handleClick }: Props) => {
   return (
-    <HStack>
-      <Text>{genre.name}</Text>
-    </HStack>
+    <Button variant="link" onClick={() => handleClick(genre)}>
+      {genre.name}
+    </Button>
   );
 };
 

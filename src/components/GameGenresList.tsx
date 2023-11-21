@@ -36,7 +36,10 @@ const GameGenresList = () => {
                 alt={genre.name}
                 marginX={2}
               />
-              <GenreItem genre={genre} />
+              <GenreItem
+                genre={genre}
+                handleClick={(g) => console.log(g.name)}
+              />
             </ListItem>
           ))}
       </List>
