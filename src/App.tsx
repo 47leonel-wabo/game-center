@@ -19,6 +19,11 @@ function App() {
              "footer footer footer"`,
       }}
       gap={1}
+      templateColumns={{
+        base: `1fr`,
+        lg: `200px 1fr`,
+        xl: `300px 1fr`,
+      }}
     >
       <GridItem area="header">
         <HStack justifyContent={"space-between"}>

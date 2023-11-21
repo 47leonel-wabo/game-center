@@ -24,7 +24,6 @@ const GameGenresList = () => {
       </Heading>
       <Divider />
       <List spacing={2} padding={2}>
-        {genreError && <Text>{genreError}</Text>}
         {!isGenreLoading &&
           genres.map((genre) => (
             <ListItem key={genre.id} display="flex" alignItems="center">
