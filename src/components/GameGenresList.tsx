@@ -1,5 +1,14 @@
-import { Heading, Text, VStack } from "@chakra-ui/react";
+import {
+  Divider,
+  Heading,
+  Image,
+  List,
+  ListItem,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import useGenre from "../hooks/useGenres";
+import { cropImage } from "../services/games-service";
 import GenreItem from "./GenreItem";
 import GameGenreSkeleton from "./skeleton/GameGenreSkeleton";
 
@@ -13,9 +22,25 @@ const GameGenresList = () => {
       <Heading as="h3" size="sm">
         Game Genres
       </Heading>
-      {genreError && <Text>{genreError}</Text>}
-      {!isGenreLoading &&
-        genres.map((genre) => <GenreItem key={genre.id} genre={genre} />)}
+      <Divider />
+      <List spacing={2} padding={2}>
+        {genreError && <Text>{genreError}</Text>}
+        {!isGenreLoading &&
+          genres.map((genre) => (
+            <ListItem key={genre.id} display="flex" alignItems="center">
+              <Image
+                boxSize="32px"
+                objectFit="fill"
+                overflow="hidden"
+                borderRadius={8}
+                src={cropImage(genre.image_background)}
+                alt={genre.name}
+                marginX={2}
+              />
+              <GenreItem genre={genre} />
+            </ListItem>
+          ))}
+      </List>
     </VStack>
   );
 };
