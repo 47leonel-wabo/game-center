@@ -1,4 +1,4 @@
-import { CanceledError } from "axios";
+import { AxiosRequestConfig, CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import createService from "../services/http-service";
 
@@ -11,25 +11,32 @@ export interface RAWGRequestResponse<T> {
 }
 
 // This custom hook generalize the data collection process for - genres and - games
-const useData = <T>(endpoint: string) => {
+const useData = <T>(
+  endpoint: string,
+  requestConfig?: AxiosRequestConfig,
+  dependencies?: any[]
+) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    setLoading(true);
-    const { resultPromise, controller } =
-      createService(endpoint).getAll<RAWGRequestResponse<T>>();
-    resultPromise
-      .then(({ data }) => setData(data.results))
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-      })
-      .finally(() => setLoading(false));
+  useEffect(
+    () => {
+      setLoading(true);
+      const { resultPromise, controller } =
+        createService(endpoint).getAll<RAWGRequestResponse<T>>(requestConfig);
+      resultPromise
+        .then(({ data }) => setData(data.results))
+        .catch((err) => {
+          if (err instanceof CanceledError) return;
+          setError(err.message);
+        })
+        .finally(() => setLoading(false));
 
-    return () => controller.abort();
-  }, []);
+      return () => controller.abort();
+    },
+    dependencies ? [...dependencies] : []
+  );
 
   return { data, error, isLoading };
 };

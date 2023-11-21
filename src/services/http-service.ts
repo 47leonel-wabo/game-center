@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from "axios";
 import axiosInstance from "./api-client";
 
 class HttpService {
@@ -7,10 +8,12 @@ class HttpService {
     this.endpoint = endpoint;
   }
 
-  getAll<T>() {
+  // axios request config parameter is used to add more configuration to the request
+  getAll<T>(requestConfig?: AxiosRequestConfig) {
     const controller = new AbortController();
     const resultPromise = axiosInstance.get<T>(this.endpoint, {
       signal: controller.signal,
+      ...requestConfig,
     });
     return { resultPromise, controller };
   }

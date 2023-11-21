@@ -11,8 +11,13 @@ import useGenre from "../hooks/useGenres";
 import { cropImage } from "../services/games-service";
 import GenreItem from "./GenreItem";
 import GameGenreSkeleton from "./skeleton/GameGenreSkeleton";
+import { Genre } from "../services/genres-service";
 
-const GameGenresList = () => {
+interface Props {
+  onGenreSelected: (genre: Genre) => void;
+}
+
+const GameGenresList = ({ onGenreSelected }: Props) => {
   const { genres, isGenreLoading, genreError } = useGenre();
 
   if (isGenreLoading) return <GameGenreSkeleton />;
@@ -36,10 +41,7 @@ const GameGenresList = () => {
                 alt={genre.name}
                 marginX={2}
               />
-              <GenreItem
-                genre={genre}
-                handleClick={(g) => console.log(g.name)}
-              />
+              <GenreItem genre={genre} handleClick={onGenreSelected} />
             </ListItem>
           ))}
       </List>
