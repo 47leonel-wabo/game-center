@@ -6,4 +6,5 @@ This application is builded using React Library, and consume api from the bigges
 
 ## Features
 
-* Filtering games by platforms and/or genres
+- Filtering games by platforms and/or genres
+- Sorting games
