@@ -4,20 +4,20 @@ import { Genre } from "../services/genres-service";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./skeleton/GameCardSkeleton";
 import { ParentPlatform } from "../hooks/usePlatforms";
+import { GameQuery } from "../App";
 
 const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 interface Props {
-  selectedGenre: Genre | null;
-  selectedPlatform: ParentPlatform | null;
+  gameQuery: GameQuery;
 }
 
-const GamesGrid = ({ selectedPlatform, selectedGenre }: Props) => {
+const GamesGrid = ({ gameQuery }: Props) => {
   const {
     data: games,
     error: gamesError,
     isLoading: gamesLoading,
-  } = useGames(selectedPlatform, selectedGenre);
+  } = useGames(gameQuery);
 
   if (gamesLoading)
     return (

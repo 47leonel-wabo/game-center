@@ -11,9 +11,10 @@ import { ParentPlatform } from "./hooks/usePlatforms";
 import FilterTag from "./components/FilterTag";
 import GameSortSelector from "./components/GameSortSelector";
 
-interface GameQuery {
+export interface GameQuery {
   genre: Genre | null;
   platform: ParentPlatform | null;
+  sortOrder: string;
 }
 
 function App() {
@@ -64,13 +65,14 @@ function App() {
             {gameQuery.genre && <FilterTag message={gameQuery.genre?.name} />}
           </HStack>
           <Box marginX={4}>
-            <GameSortSelector />
+            <GameSortSelector
+              onSelect={(sortCriteria) =>
+                setGameQuery({ ...gameQuery, sortOrder: sortCriteria.value })
+              }
+            />
           </Box>
         </HStack>
-        <GamesGrid
-          selectedPlatform={gameQuery?.platform}
-          selectedGenre={gameQuery?.genre}
-        />
+        <GamesGrid gameQuery={gameQuery} />
       </GridItem>
       <GridItem area="footer" bg="#3e3e3e">
         Footer
