@@ -1,7 +1,6 @@
 import { Box, Grid, GridItem, HStack, Show, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import "./App.css";
-import ColorModeSwitch from "./components/ColorModeSwitch";
 import GameGenresList from "./components/GameGenresList";
 import GamePlatform from "./components/GamePlatform";
 import GamesGrid from "./components/GamesGrid";
@@ -41,10 +40,7 @@ function App() {
       }}
     >
       <GridItem area="header">
-        <HStack justifyContent={"space-between"}>
-          <NavBar />
-          <ColorModeSwitch />
-        </HStack>
+        <NavBar />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside">
