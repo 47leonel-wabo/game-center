@@ -10,7 +10,9 @@ const GamePlatform = ({ onSelect }: Props) => {
 
   if (error) return;
 
-  return <GameItemSelector data={platforms} onSelect={onSelect} />;
+  return (
+    <GameItemSelector title="Platforms" data={platforms} onSelect={onSelect} />
+  );
 };
 
 export default GamePlatform;

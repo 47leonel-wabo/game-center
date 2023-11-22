@@ -3,14 +3,15 @@ import { FaChevronDown } from "react-icons/fa6";
 
 interface Props {
   data: any[];
+  title: string;
   onSelect: (value: any) => void;
 }
 
-const GameItemSelector = ({ data, onSelect }: Props) => {
+const GameItemSelector = ({ title, data, onSelect }: Props) => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<FaChevronDown />}>
-        Platforms
+        {title}
       </MenuButton>
       <MenuList>
         {data.map((platform) => (

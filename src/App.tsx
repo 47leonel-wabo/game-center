@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import { Genre } from "./services/genres-service";
 import { ParentPlatform } from "./hooks/usePlatforms";
 import FilterTag from "./components/FilterTag";
+import GameSortSelector from "./components/GameSortSelector";
 
 interface GameQuery {
   genre: Genre | null;
@@ -63,7 +64,7 @@ function App() {
             {gameQuery.genre && <FilterTag message={gameQuery.genre?.name} />}
           </HStack>
           <Box marginX={4}>
-            <Text>Filter</Text>
+            <GameSortSelector />
           </Box>
         </HStack>
         <GamesGrid
