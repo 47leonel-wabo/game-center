@@ -10,10 +10,13 @@ import { Genre } from "./services/genres-service";
 import { ParentPlatform } from "./hooks/usePlatforms";
 import FilterTag from "./components/FilterTag";
 
+interface GameQuery {
+  genre: Genre | null;
+  platform: ParentPlatform | null;
+}
+
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] =
-    useState<ParentPlatform | null>(null);
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   return (
     <Grid
@@ -43,18 +46,26 @@ function App() {
       </GridItem>
       <Show above="lg">
         <GridItem area="aside">
-          <GameGenresList onGenreSelected={setSelectedGenre} />
+          <GameGenresList
+            onGenreSelected={(genre) => setGameQuery({ ...gameQuery, genre })}
+          />
         </GridItem>
       </Show>
       <GridItem area="main">
         <HStack marginX={3}>
-          <GamePlatform onPlatformSelected={setSelectedPlatform} />
-          {selectedPlatform && <FilterTag message={selectedPlatform.name} />}
-          {selectedGenre && <FilterTag message={selectedGenre.name} />}
+          <GamePlatform
+            onPlatformSelected={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
+          />
+          {gameQuery.platform && (
+            <FilterTag message={gameQuery.platform?.name} />
+          )}
+          {gameQuery.genre && <FilterTag message={gameQuery.genre?.name} />}
         </HStack>
         <GamesGrid
-          selectedPlatform={selectedPlatform}
-          selectedGenre={selectedGenre}
+          selectedPlatform={gameQuery?.platform}
+          selectedGenre={gameQuery?.genre}
         />
       </GridItem>
       <GridItem area="footer" bg="#3e3e3e">
