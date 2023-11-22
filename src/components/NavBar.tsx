@@ -10,7 +10,7 @@ const NavBar = () => {
       <Heading as="h2" size="md" whiteSpace="nowrap">
         Game Hub
       </Heading>
-      <SearchInput />
+      <SearchInput onSearch={(keyWord) => console.log("Search on", keyWord)} />
       <ColorModeSwitch />
     </HStack>
   );
