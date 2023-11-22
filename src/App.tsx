@@ -8,6 +8,7 @@ import GamesGrid from "./components/GamesGrid";
 import NavBar from "./components/NavBar";
 import { Genre } from "./services/genres-service";
 import { ParentPlatform } from "./hooks/usePlatforms";
+import FilterTag from "./components/FilterTag";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
@@ -48,6 +49,8 @@ function App() {
       <GridItem area="main">
         <HStack marginX={3}>
           <GamePlatform onPlatformSelected={setSelectedPlatform} />
+          {selectedPlatform && <FilterTag message={selectedPlatform.name} />}
+          {selectedGenre && <FilterTag message={selectedGenre.name} />}
         </HStack>
         <GamesGrid
           selectedPlatform={selectedPlatform}
