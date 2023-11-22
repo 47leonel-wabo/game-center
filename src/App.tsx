@@ -1,4 +1,4 @@
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack, Show, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import "./App.css";
 import ColorModeSwitch from "./components/ColorModeSwitch";
@@ -52,16 +52,19 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <HStack marginX={3}>
-          <GamePlatform
-            onPlatformSelected={(platform) =>
-              setGameQuery({ ...gameQuery, platform })
-            }
-          />
-          {gameQuery.platform && (
-            <FilterTag message={gameQuery.platform?.name} />
-          )}
-          {gameQuery.genre && <FilterTag message={gameQuery.genre?.name} />}
+        <HStack justifyContent="space-between">
+          <HStack marginX={3}>
+            <GamePlatform
+              onSelect={(platform) => setGameQuery({ ...gameQuery, platform })}
+            />
+            {gameQuery.platform && (
+              <FilterTag message={gameQuery.platform?.name} />
+            )}
+            {gameQuery.genre && <FilterTag message={gameQuery.genre?.name} />}
+          </HStack>
+          <Box marginX={4}>
+            <Text>Filter</Text>
+          </Box>
         </HStack>
         <GamesGrid
           selectedPlatform={gameQuery?.platform}
