@@ -3,12 +3,16 @@ import { useState } from "react";
 import "./App.css";
 import ColorModeSwitch from "./components/ColorModeSwitch";
 import GameGenresList from "./components/GameGenresList";
+import GamePlatform from "./components/GamePlatform";
 import GamesGrid from "./components/GamesGrid";
 import NavBar from "./components/NavBar";
 import { Genre } from "./services/genres-service";
+import { ParentPlatform } from "./hooks/usePlatforms";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] =
+    useState<ParentPlatform | null>(null);
 
   return (
     <Grid
@@ -42,7 +46,13 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <GamesGrid selectedGenre={selectedGenre} />
+        <HStack marginX={3}>
+          <GamePlatform onPlatformSelected={setSelectedPlatform} />
+        </HStack>
+        <GamesGrid
+          selectedPlatform={selectedPlatform}
+          selectedGenre={selectedGenre}
+        />
       </GridItem>
       <GridItem area="footer" bg="#3e3e3e">
         Footer

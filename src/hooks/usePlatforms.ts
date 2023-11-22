@@ -15,7 +15,7 @@ export interface ParentPlatform {
   id: number;
   name: string;
   slug: string;
-  platform: Platform[];
+  //   platform: Platform[];
 }
 
 const usePlatforms = () => useData<ParentPlatform>("/platforms/lists/parents");
