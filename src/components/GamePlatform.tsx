@@ -8,7 +8,7 @@ interface Props {
 const GamePlatform = ({ onSelect }: Props) => {
   const { data: platforms, error } = usePlatforms();
 
-  if (error) return;
+  if (error) return <></>;
 
   return (
     <GameItemSelector title="Platforms" data={platforms} onSelect={onSelect} />

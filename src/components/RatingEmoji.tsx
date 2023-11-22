@@ -15,7 +15,7 @@ const emojis: { [key: number]: IconType } = {
 };
 
 const RatingEmoji = ({ rating }: Props) => {
-  if (rating < 3) return;
+  if (rating < 3) return <></>;
   return <Icon as={emojis[rating]} color="red.500" boxSize={8} marginY={2} />;
 };
 
