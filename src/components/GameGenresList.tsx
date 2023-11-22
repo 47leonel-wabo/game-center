@@ -35,7 +35,7 @@ const GameGenresList = ({ selectedGenre, onGenreSelected }: Props) => {
             <ListItem key={genre.id} display="flex" alignItems="center">
               <Image
                 boxSize="32px"
-                objectFit="fill"
+                objectFit="cover"
                 overflow="hidden"
                 borderRadius={8}
                 src={cropImage(genre.image_background)}
