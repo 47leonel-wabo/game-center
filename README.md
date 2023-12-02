@@ -4,6 +4,14 @@
 
 This application is builded using React Library, and consume api from the biggest games database platform [RAWG](https://rawg.io/)
 
+## Technologies
+
+- React 18+
+- Typescript
+- JSX
+- ReactQuery
+- 
+
 ## Features
 
 - Filtering games by platforms (playstation, xbox, nintendo, etc.) 
