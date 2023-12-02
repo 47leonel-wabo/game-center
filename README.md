@@ -10,11 +10,11 @@ This application is builded using React Library, and consume api from the bigges
 - Typescript
 - JSX
 - ReactQuery
-- 
+- Axios
 
 ## Features
 
-- Filtering games by platforms (playstation, xbox, nintendo, etc.) 
+- Filtering games by platforms (playstation, xbox, nintendo, etc.)
 - Genres filtering
 - Sorting games
 - Game details & related
