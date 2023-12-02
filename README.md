@@ -9,7 +9,7 @@ This application is builded using React Library, and consume api from the bigges
 - React 18+
 - Typescript
 - JSX
-- ReactQuery
+- ReactQuery (& devtools)
 - Axios
 
 ## Features
