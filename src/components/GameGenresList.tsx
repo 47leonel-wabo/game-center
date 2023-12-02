@@ -1,17 +1,17 @@
 import {
+  Box,
   Divider,
   Heading,
   Image,
   List,
   ListItem,
-  Text,
   VStack,
 } from "@chakra-ui/react";
-import useGenre from "../hooks/useGenres";
+import userGenresQuery from "../hooks/useGenresQuery";
 import { cropImage } from "../services/games-service";
+import { Genre } from "../services/genres-service";
 import GenreItem from "./GenreItem";
 import GameGenreSkeleton from "./skeleton/GameGenreSkeleton";
-import { Genre } from "../services/genres-service";
 
 interface Props {
   onGenreSelected: (genre: Genre) => void;
@@ -19,19 +19,21 @@ interface Props {
 }
 
 const GameGenresList = ({ selectedGenre, onGenreSelected }: Props) => {
-  const { genres, isGenreLoading, genreError } = useGenre();
+  // const { genres, isGenreLoading, genreError } = useGenre();
+  const { data: genres, isLoading, error } = userGenresQuery();
 
-  if (isGenreLoading) return <GameGenreSkeleton />;
+  if (isLoading) return <GameGenreSkeleton />;
 
   return (
     <VStack>
       <Heading as="h3" size="sm">
         Game Genres
       </Heading>
+      {error && <Box>{error?.message}</Box>}
       <Divider />
       <List spacing={2} padding={2}>
-        {!isGenreLoading &&
-          genres.map((genre) => (
+        {!isLoading &&
+          genres?.results.map((genre) => (
             <ListItem key={genre.id} display="flex" alignItems="center">
               <Image
                 boxSize="32px"

@@ -1,7 +1,7 @@
 import { GameQuery } from "../App";
 import { PlatformObject } from "../services/games-service";
 import { Genre } from "../services/genres-service";
-import useData from "./useData";
+import useData, { RAWGRequestResponse } from "./useData";
 import { ParentPlatform } from "./usePlatforms";
 
 export interface Game {

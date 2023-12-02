@@ -1,6 +1,7 @@
 import { AxiosRequestConfig, CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import createService from "../services/http-service";
+import { Game } from "./useGames";
 
 // Because RAWG api return response with this shape
 export interface RAWGRequestResponse<T> {
@@ -23,17 +24,18 @@ const useData = <T>(
   useEffect(
     () => {
       setLoading(true);
-      const { resultPromise, controller } =
-        createService(endpoint).getAll<RAWGRequestResponse<T>>(requestConfig);
+      const resultPromise =
+        createService<RAWGRequestResponse<T>>(endpoint).getAll(requestConfig);
+
       resultPromise
-        .then(({ data }) => setData(data.results))
+        .then((res) => setData(res.results))
         .catch((err) => {
           if (err instanceof CanceledError) return;
           setError(err.message);
         })
         .finally(() => setLoading(false));
 
-      return () => controller.abort();
+      // return () => controller.abort();
     },
     dependencies ? [...dependencies] : []
   );

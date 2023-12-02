@@ -1,3 +1,4 @@
+import { RAWGRequestResponse } from "../hooks/useData";
 import createService from "./http-service";
 
 export interface Genre {
@@ -8,6 +9,6 @@ export interface Genre {
   image_background: string;
 }
 
-const genreService = createService("/genres");
+const genreService = createService<RAWGRequestResponse<Genre>>("/genres");
 
 export default genreService;
