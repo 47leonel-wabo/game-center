@@ -11,6 +11,7 @@ This application is builded using React Library, and consume api from the bigges
 - JSX
 - ReactQuery (& devtools)
 - Axios
+- React Hooks
 
 ## Features
 
