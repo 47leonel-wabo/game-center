@@ -1,4 +1,5 @@
-import usePlatforms, { ParentPlatform } from "../hooks/usePlatforms";
+import usePlatformQuery from "../hooks/usePlatformQuery";
+import { ParentPlatform } from "../hooks/usePlatforms";
 import GameItemSelector from "./GameItemSelector";
 
 interface Props {
@@ -6,12 +7,16 @@ interface Props {
 }
 
 const GamePlatform = ({ onSelect }: Props) => {
-  const { data: platforms, error } = usePlatforms();
+  const { data: platforms, error } = usePlatformQuery();
 
   if (error) return <></>;
 
   return (
-    <GameItemSelector title="Platforms" data={platforms} onSelect={onSelect} />
+    <GameItemSelector<ParentPlatform>
+      title="Platforms"
+      data={platforms?.results}
+      onSelect={onSelect}
+    />
   );
 };
 
