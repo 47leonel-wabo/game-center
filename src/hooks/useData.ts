@@ -1,15 +1,7 @@
 import { AxiosRequestConfig, CanceledError } from "axios";
 import { useEffect, useState } from "react";
+import { RAWGRequestResponse } from "../services/api-client";
 import createService from "../services/http-service";
-import { Game } from "./useGames";
-
-// Because RAWG api return response with this shape
-export interface RAWGRequestResponse<T> {
-  count: number;
-  next: string;
-  previous: string;
-  results: T[];
-}
 
 // This custom hook generalize the data collection process for - genres and - games
 const useData = <T>(

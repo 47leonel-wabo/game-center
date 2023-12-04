@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import apiClient from "../services/api-client";
+import apiClient, { RAWGRequestResponse } from "../services/api-client";
 import { PLATFORMS_KEY } from "../services/constants";
-import { RAWGRequestResponse } from "./useData";
 import { ParentPlatform } from "./usePlatforms";
 
 const usePlatformQuery = () =>

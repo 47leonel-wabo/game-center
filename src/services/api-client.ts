@@ -10,4 +10,12 @@ const axiosInstance = axios.create({
   },
 });
 
+// Because RAWG api return response with this shape
+export interface RAWGRequestResponse<T> {
+  count: number;
+  next: string;
+  previous: string;
+  results: T[];
+}
+
 export default axiosInstance;

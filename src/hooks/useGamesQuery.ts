@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { GAMES_KEY } from "../services/constants";
 import { GameQuery } from "../App";
-import apiClient from "../services/api-client";
-import { RAWGRequestResponse } from "./useData";
+import apiClient, { RAWGRequestResponse } from "../services/api-client";
+import { GAMES_KEY } from "../services/constants";
 import { Game } from "./useGames";
 
 const useGamesQuery = (gameQuery: GameQuery) =>
