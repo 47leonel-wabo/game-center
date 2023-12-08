@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const apiKey: string = "0227d7d5bfd44a18bd08b44b6098c742";
 
@@ -18,4 +18,17 @@ export interface RAWGRequestResponse<T> {
   results: T[];
 }
 
-export default axiosInstance;
+class API_Client<T> {
+  endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = endpoint;
+  }
+
+  getAll = (config: AxiosRequestConfig) =>
+    axiosInstance
+      .get<RAWGRequestResponse<T>>(this.endpoint, config)
+      .then((res) => res.data);
+}
+
+export default API_Client;
