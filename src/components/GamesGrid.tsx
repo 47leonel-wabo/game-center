@@ -1,4 +1,4 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Button, SimpleGrid, Text } from "@chakra-ui/react";
 import { GameQuery } from "../App";
 import useGamesQuery from "../hooks/useGamesQuery";
 import GameCard from "./GameCard";
@@ -36,6 +36,7 @@ const GamesGrid = ({ gameQuery }: Props) => {
               <GameCard key={game.id} game={game} />
             ))}
           </SimpleGrid>
+          <Button></Button>
         </>
       )}
     </>

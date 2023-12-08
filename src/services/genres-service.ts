@@ -1,4 +1,4 @@
-import { RAWGRequestResponse } from "../hooks/useData";
+import { RAWGRequestResponse } from "./api-client";
 import createService from "./http-service";
 
 export interface Genre {
