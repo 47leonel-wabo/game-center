@@ -1,5 +1,4 @@
-import { AxiosRequestConfig } from "axios";
-import axiosInstance from "./api-client";
+import axios, { AxiosRequestConfig } from "axios";
 
 class HttpService<T> {
   endpoint: string;
@@ -11,7 +10,7 @@ class HttpService<T> {
   // axios request config parameter is used to add more configuration to the request
   getAll = (requestConfig?: AxiosRequestConfig) => {
     const controller = new AbortController();
-    const resultPromise = axiosInstance
+    const resultPromise = axios
       .get<T>(this.endpoint, {
         signal: controller.signal,
         ...requestConfig,
@@ -22,13 +21,14 @@ class HttpService<T> {
 
   getOne = (id: number) => {
     const controller = new AbortController();
-    const resultPromise = axiosInstance.get<T>(`${this.endpoint}/${id}`, {
+    const resultPromise = axios.get<T>(`${this.endpoint}/${id}`, {
       signal: controller.signal,
     });
     return { resultPromise, controller };
   };
 }
 
+// NOTE: THE 'endpoint' PARAMETER SHOULD HOLD THE COMPLETE PATH OF BACKEND API
 const createService = <T>(endpoint: string) => new HttpService<T>(endpoint);
 
 export default createService;

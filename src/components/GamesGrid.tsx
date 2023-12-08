@@ -14,7 +14,10 @@ const GamesGrid = ({ gameQuery }: Props) => {
   const {
     data: games,
     error: gamesError,
-    isLoading: gamesLoading,
+    isFetching: gamesLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
   } = useGamesQuery(gameQuery);
 
   if (gamesLoading)
@@ -32,11 +35,22 @@ const GamesGrid = ({ gameQuery }: Props) => {
       {!gamesLoading && (
         <>
           <SimpleGrid columns={{ sm: 1, md: 3, xl: 4 }} spacing={8} padding={4}>
-            {games?.results.map((game) => (
-              <GameCard key={game.id} game={game} />
-            ))}
+            {games?.pages.map((page) =>
+              page.results.map((game) => <GameCard key={game.id} game={game} />)
+            )}
           </SimpleGrid>
-          <Button></Button>
+          <Button
+            size={"sm"}
+            ml={3}
+            onClick={() => fetchNextPage()}
+            disabled={!hasNextPage || isFetchingNextPage}
+          >
+            {isFetchingNextPage
+              ? "Loading more..."
+              : hasNextPage
+              ? "Load More"
+              : "Nothing more to load"}
+          </Button>
         </>
       )}
     </>
