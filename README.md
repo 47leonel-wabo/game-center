@@ -8,7 +8,7 @@ This application is builded using React Library, and consume api from the bigges
 
 - React 18+
 - Typescript
-- JSX
+- JSX (TSX)
 - ReactQuery (& devtools)
 - Axios
 - React Hooks
