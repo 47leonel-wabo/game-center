@@ -1,19 +1,16 @@
-import { Box, Grid, GridItem, HStack, Show, Text } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import { useState } from "react";
 import "./App.css";
 import GameGenresList from "./components/GameGenresList";
+import GameHeading from "./components/GameHeading";
 import GamePlatform from "./components/GamePlatform";
+import GameSortSelector from "./components/GameSortSelector";
 import GamesGrid from "./components/GamesGrid";
 import NavBar from "./components/NavBar";
-import { Genre } from "./services/genres-service";
-import { ParentPlatform } from "./hooks/usePlatforms";
-import FilterTag from "./components/FilterTag";
-import GameSortSelector from "./components/GameSortSelector";
-import GameHeading from "./components/GameHeading";
 
 export interface GameQuery {
-  genre: Genre | null;
-  platform: ParentPlatform | null;
+  genreId?: number;
+  platformId?: number;
   sortOrder: string;
   searchText: string;
 }
@@ -49,7 +46,9 @@ function App() {
       <Show above="lg">
         <GridItem area="aside">
           <GameGenresList
-            onGenreSelected={(genre) => setGameQuery({ ...gameQuery, genre })}
+            onGenreSelected={(genre) =>
+              setGameQuery({ ...gameQuery, genreId: genre.id })
+            }
           />
         </GridItem>
       </Show>
@@ -58,12 +57,14 @@ function App() {
         <HStack justifyContent="space-between">
           <HStack marginX={3}>
             <GamePlatform
-              onSelect={(platform) => setGameQuery({ ...gameQuery, platform })}
+              onSelect={(platform) =>
+                setGameQuery({ ...gameQuery, platformId: platform.id })
+              }
             />
-            {gameQuery.platform && (
+            {/* {gameQuery.platform && (
               <FilterTag message={gameQuery.platform?.name} />
             )}
-            {gameQuery.genre && <FilterTag message={gameQuery.genre?.name} />}
+            {gameQuery.genre && <FilterTag message={gameQuery.genre?.name} />} */}
           </HStack>
           <Box marginX={4}>
             <GameSortSelector

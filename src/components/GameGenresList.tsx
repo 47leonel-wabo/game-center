@@ -15,10 +15,10 @@ import GameGenreSkeleton from "./skeleton/GameGenreSkeleton";
 
 interface Props {
   onGenreSelected: (genre: Genre) => void;
-  selectedGenre?: Genre | null;
+  selectedGenreId?: number;
 }
 
-const GameGenresList = ({ selectedGenre, onGenreSelected }: Props) => {
+const GameGenresList = ({ selectedGenreId, onGenreSelected }: Props) => {
   // const { genres, isGenreLoading, genreError } = useGenre();
   const { data: genres, isLoading, error } = userGenresQuery();
 
@@ -46,7 +46,7 @@ const GameGenresList = ({ selectedGenre, onGenreSelected }: Props) => {
               />
               <GenreItem
                 genre={genre}
-                selectedGenre={selectedGenre}
+                selectedGenreId={selectedGenreId}
                 handleClick={onGenreSelected}
               />
             </ListItem>

@@ -1,17 +1,17 @@
-import { Button, Text } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { Genre } from "../services/genres-service";
 
 interface Props {
   genre: Genre;
-  selectedGenre?: Genre | null;
+  selectedGenreId?: number;
   handleClick: (genre: Genre) => void;
 }
 
-const GenreItem = ({ genre, selectedGenre, handleClick }: Props) => {
+const GenreItem = ({ genre, selectedGenreId, handleClick }: Props) => {
   return (
     <Button
       variant="link"
-      fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+      fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
       onClick={() => handleClick(genre)}
     >
       {genre.name}
