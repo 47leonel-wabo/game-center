@@ -7,6 +7,7 @@ This application is builded using React Library, and consume api from the bigges
 ## Technologies
 
 - React 18+
+- Chackra UI
 - Typescript
 - JSX (TSX)
 - ReactQuery (& devtools)
