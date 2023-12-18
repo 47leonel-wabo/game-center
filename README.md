@@ -16,7 +16,7 @@ This application is builded using React Library, and consume api from the bigges
 - React icons
 - 'ms' for time calculation
 - React infinite scroll (react-infinite-scroll-component)
-- State management with zustand (& devtool)
+- Zustand (& devtool)
 
 ## Features
 
