@@ -17,6 +17,7 @@ This application is builded using React Library, and consume api from the bigges
 - 'ms' for time calculation
 - React infinite scroll (react-infinite-scroll-component)
 - Zustand (& devtool) for state management
+- React Router v6+
 
 ## Features
 
