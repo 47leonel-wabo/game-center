@@ -15,6 +15,7 @@ const SearchInput = () => {
           setSearchText(searchRef.current.value);
       }}
       className="nav-bar-search-form"
+      style={{ marginLeft: 32 }}
     >
       <InputGroup>
         <InputLeftElement pointerEvents="none">
