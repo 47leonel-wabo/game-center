@@ -34,7 +34,7 @@ interface GameStore {
 const useGameStore = create<GameStore>((set) => ({
   gameQuery: {},
   setSearchText: (searchText) =>
-    set((store) => ({ gameQuery: { searchText } })),
+    set((store) => ({ gameQuery: { searchText } })), // Remove all other game query criteria
   setGenre: (genreId) =>
     set((store) => ({ gameQuery: { ...store.gameQuery, genreId } })),
   setPlatform: (platformId) =>
