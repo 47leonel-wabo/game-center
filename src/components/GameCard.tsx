@@ -3,13 +3,16 @@ import { cropImage } from "../services/games-service";
 import GameScore from "./GameScore";
 import PlatformIcon from "./PlatformIcon";
 import RatingEmoji from "./RatingEmoji";
-import { Game } from "../stores/store";
+import useGameStore, { Game } from "../stores/store";
+import { Link } from "react-router-dom";
 
 interface Props {
   game: Game;
 }
 
 const GameCard = ({ game }: Props) => {
+  const setSelectedGameId = useGameStore((selector) => selector.setGameId);
+
   return (
     <Card borderRadius={8} overflow={"hidden"}>
       <Image src={cropImage(game.background_image)} />
@@ -25,12 +28,17 @@ const GameCard = ({ game }: Props) => {
           </HStack>
           <GameScore metacretic={game.metacritic} />
         </HStack>
-        <Heading fontSize={"md"}>
-          {/* {game.name.length > 25
+        <Link
+          to={`/games/${game.name}`}
+          onClick={() => setSelectedGameId(game.id)}
+        >
+          <Heading fontSize={"md"}>
+            {/* {game.name.length > 25
             ? game.name.substring(0, 24).concat("...")
             : game.name} */}
-          {game.name}
-        </Heading>
+            {game.name}
+          </Heading>
+        </Link>
         <RatingEmoji rating={game.rating_top} />
       </CardBody>
     </Card>

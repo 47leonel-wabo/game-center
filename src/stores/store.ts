@@ -29,10 +29,14 @@ interface GameStore {
   setSearchText: (keyWord: string) => void;
   setSortOrder: (order: string) => void;
   gameQuery: GameQuery;
+  gameId?: number;
+  setGameId: (id: number) => void;
 }
 
 const useGameStore = create<GameStore>((set) => ({
   gameQuery: {},
+  gameId: undefined,
+  setGameId: (gameId) => set((store) => ({ gameId })),
   setSearchText: (searchText) =>
     set((store) => ({ gameQuery: { searchText } })), // Remove all other game query criteria
   setGenre: (genreId) =>
