@@ -1,5 +1,4 @@
 import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
-import { useState } from "react";
 import "./App.css";
 import GameGenresList from "./components/GameGenresList";
 import GameHeading from "./components/GameHeading";
@@ -8,16 +7,7 @@ import GameSortSelector from "./components/GameSortSelector";
 import GamesGrid from "./components/GamesGrid";
 import NavBar from "./components/NavBar";
 
-export interface GameQuery {
-  genreId?: number;
-  platformId?: number;
-  sortOrder: string;
-  searchText: string;
-}
-
 function App() {
-  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-
   return (
     <Grid
       templateAreas={{
@@ -39,42 +29,28 @@ function App() {
       }}
     >
       <GridItem area="header">
-        <NavBar
-          onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText })}
-        />
+        <NavBar />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside">
-          <GameGenresList
-            onGenreSelected={(genre) =>
-              setGameQuery({ ...gameQuery, genreId: genre.id })
-            }
-          />
+          <GameGenresList />
         </GridItem>
       </Show>
       <GridItem area="main">
-        <GameHeading gameQuery={gameQuery} />
+        <GameHeading />
         <HStack justifyContent="space-between">
           <HStack marginX={3}>
-            <GamePlatform
-              onSelect={(platform) =>
-                setGameQuery({ ...gameQuery, platformId: platform.id })
-              }
-            />
+            <GamePlatform />
             {/* {gameQuery.platform && (
               <FilterTag message={gameQuery.platform?.name} />
             )}
             {gameQuery.genre && <FilterTag message={gameQuery.genre?.name} />} */}
           </HStack>
           <Box marginX={4}>
-            <GameSortSelector
-              onSelect={(sortCriteria) =>
-                setGameQuery({ ...gameQuery, sortOrder: sortCriteria.value })
-              }
-            />
+            <GameSortSelector />
           </Box>
         </HStack>
-        <GamesGrid gameQuery={gameQuery} />
+        <GamesGrid />
       </GridItem>
       <GridItem area="footer" bg="#3e3e3e">
         Footer

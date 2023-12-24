@@ -1,9 +1,6 @@
 import { useState } from "react";
 import GameItemSelector from "./GameItemSelector";
-
-interface Props {
-  onSelect: (criteria: SortBy) => void;
-}
+import useGameStore from "../stores/store";
 
 interface SortBy {
   id: number;
@@ -20,11 +17,16 @@ const sortCriteria: SortBy[] = [
   { id: 5, value: "-rating", name: "Average rating" },
 ];
 
-const GameSortSelector = ({ onSelect }: Props) => {
+const GameSortSelector = () => {
   const [message, setMessage] = useState<string>("");
+  const setSortOrder = useGameStore((selector) => selector.setSortOrder);
 
   return (
-    <GameItemSelector title="Sort" data={sortCriteria} onSelect={onSelect} />
+    <GameItemSelector
+      title="Sort"
+      data={sortCriteria}
+      onSelect={(order) => setSortOrder(order.name)}
+    />
   );
 };
 

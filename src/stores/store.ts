@@ -1,31 +1,46 @@
 import { create } from "zustand";
-import { GameQuery } from "./../App";
+import { PlatformObject } from "../services/games-service";
 
-interface GameActions {
+export interface GameQuery {
+  genreId?: number;
+  platformId?: number;
+  sortOrder?: string;
+  searchText?: string;
+}
+export interface Game {
+  id: number;
+  name: string;
+  background_image: string;
+  parent_platforms: PlatformObject[];
+  metacritic: number;
+  rating_top: number;
+}
+
+export interface ParentPlatform {
+  id: number;
+  name: string;
+  slug: string;
+  //   platform: Platform[];
+}
+
+interface GameStore {
   setGenre: (id: number) => void;
   setPlatform: (id: number) => void;
   setSearchText: (keyWord: string) => void;
-  setOrder: (order: string) => void;
+  setSortOrder: (order: string) => void;
+  gameQuery: GameQuery;
 }
 
-interface GameStore extends GameQuery, GameActions {}
-
 const useGameStore = create<GameStore>((set) => ({
-  genreId: 0,
-  platformId: 0,
-  sortOrder: "",
-  searchText: "",
-  setGenre: (id: number) => set(() => ({ genreId: id })),
-  setPlatform: (id: number) => set(() => ({ platformId: id })),
-  setSearchText: (keyWord: string) =>
-    set(() => ({
-      // when searching, remove all existing criteria
-      platformId: 0,
-      genreId: 0,
-      sortOrder: "",
-      searchText: keyWord,
-    })),
-  setOrder: (order: string) => set(() => ({ sortOrder: order })),
+  gameQuery: {},
+  setSearchText: (searchText) =>
+    set((store) => ({ gameQuery: { searchText } })),
+  setGenre: (genreId) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, genreId } })),
+  setPlatform: (platformId) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, platformId } })),
+  setSortOrder: (sortOrder) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, sortOrder } })),
 }));
 
 export default useGameStore;

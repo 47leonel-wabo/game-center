@@ -1,12 +1,10 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
 import { FaSearch } from "react-icons/fa";
+import useGameStore from "../stores/store";
 
-interface Props {
-  onSearch: (keyWord: string) => void;
-}
-
-const SearchInput = ({ onSearch }: Props) => {
+const SearchInput = () => {
+  const setSearchText = useGameStore((selector) => selector.setSearchText);
   const searchRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -14,7 +12,7 @@ const SearchInput = ({ onSearch }: Props) => {
       onSubmit={(event) => {
         event.preventDefault();
         if (searchRef.current && searchRef.current.value.trim().length >= 3)
-          onSearch(searchRef.current.value);
+          setSearchText(searchRef.current.value);
       }}
       className="nav-bar-search-form"
     >
