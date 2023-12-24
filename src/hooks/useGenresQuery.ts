@@ -6,7 +6,7 @@ import ms from "ms";
 
 const apiClient = new API_Client<Genre>("/genres");
 
-const userGenresQuery = () => {
+const useGenresQuery = () => {
   const genresQuery = useQuery({
     queryKey: GENRES_KEY,
     queryFn: () => apiClient.getAll({}),
@@ -16,4 +16,4 @@ const userGenresQuery = () => {
   return genresQuery;
 };
 
-export default userGenresQuery;
+export default useGenresQuery;

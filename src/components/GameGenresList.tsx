@@ -7,20 +7,14 @@ import {
   ListItem,
   VStack,
 } from "@chakra-ui/react";
-import userGenresQuery from "../hooks/useGenresQuery";
+import useGenresQuery from "../hooks/useGenresQuery";
 import { cropImage } from "../services/games-service";
 import { Genre } from "../services/genres-service";
 import GenreItem from "./GenreItem";
 import GameGenreSkeleton from "./skeleton/GameGenreSkeleton";
 
-interface Props {
-  onGenreSelected: (genre: Genre) => void;
-  selectedGenreId?: number;
-}
-
-const GameGenresList = ({ selectedGenreId, onGenreSelected }: Props) => {
-  // const { genres, isGenreLoading, genreError } = useGenre();
-  const { data: genres, isLoading, error } = userGenresQuery();
+const GameGenresList = () => {
+  const { data: genres, isLoading, error } = useGenresQuery();
 
   if (isLoading) return <GameGenreSkeleton />;
 
@@ -44,11 +38,7 @@ const GameGenresList = ({ selectedGenreId, onGenreSelected }: Props) => {
                 alt={genre.name}
                 marginX={2}
               />
-              <GenreItem
-                genre={genre}
-                selectedGenreId={selectedGenreId}
-                handleClick={onGenreSelected}
-              />
+              <GenreItem genre={genre} />
             </ListItem>
           ))}
       </List>
