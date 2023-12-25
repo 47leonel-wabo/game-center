@@ -1,7 +1,11 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import GameInfoSection from "../components/GameInfoSection";
+import TextExpander from "../components/TextExpander";
 import userGameDetailsQuery from "../hooks/useGameDetailQuery";
 import useGameStore from "../stores/store";
-import TextExpander from "../components/TextExpander";
+import GameScore from "../components/GameScore";
+import { Link } from "react-router-dom";
+import GameAttributes from "../components/GameAttributes";
 
 const GameDetailPage = () => {
   const gameId = useGameStore((selector) => selector.gameId);
@@ -15,6 +19,7 @@ const GameDetailPage = () => {
     <Box p={6}>
       <Heading>{gameDetail?.name}</Heading>
       <TextExpander text={gameDetail?.description_raw!} />
+      <GameAttributes gameDetail={gameDetail!} />
     </Box>
   );
 };
