@@ -6,6 +6,8 @@ import useGameStore from "../stores/store";
 import GameScore from "../components/GameScore";
 import { Link } from "react-router-dom";
 import GameAttributes from "../components/GameAttributes";
+import GameTrailer from "../components/GameTrailer";
+import GameScreenShots from "../components/GameScreenShots";
 
 const GameDetailPage = () => {
   const gameId = useGameStore((selector) => selector.gameId);
@@ -20,6 +22,8 @@ const GameDetailPage = () => {
       <Heading>{gameDetail?.name}</Heading>
       <TextExpander text={gameDetail?.description_raw!} />
       <GameAttributes gameDetail={gameDetail!} />
+      {/* <GameTrailer gameId={gameDetail?.id!} />
+      <GameScreenShots gameId={gameDetail?.id!} /> */}
     </Box>
   );
 };
