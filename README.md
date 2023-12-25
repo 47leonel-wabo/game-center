@@ -24,4 +24,4 @@ This application is builded using React Library, and consume api from the bigges
 - Filtering games by platforms (playstation, xbox, nintendo, etc.)
 - Genres filtering
 - Sorting games
-- Game details & related
+- Game details & related screenshot and trailer
