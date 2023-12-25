@@ -14,7 +14,14 @@ const GameCard = ({ game }: Props) => {
   const setSelectedGameId = useGameStore((selector) => selector.setGameId);
 
   return (
-    <Card borderRadius={8} overflow={"hidden"}>
+    <Card
+      borderRadius={8}
+      overflow={"hidden"}
+      _hover={{
+        transform: "scale(1.09)",
+        transition: "transform .18s ease-in",
+      }}
+    >
       <Image src={cropImage(game.background_image)} />
       <CardBody>
         <HStack marginY={1} justifyContent="space-between" alignItems="center">
@@ -29,10 +36,10 @@ const GameCard = ({ game }: Props) => {
           <GameScore metacretic={game.metacritic} />
         </HStack>
         <Link
-          to={`/games/${game.name}`}
+          to={`/games/${game.slug}`}
           onClick={() => setSelectedGameId(game.id)}
         >
-          <Heading fontSize={"md"}>
+          <Heading fontSize={"md"} _hover={{ color: "tomato" }}>
             {/* {game.name.length > 25
             ? game.name.substring(0, 24).concat("...")
             : game.name} */}

@@ -10,6 +10,7 @@ export interface GameQuery {
 export interface Game {
   id: number;
   name: string;
+  slug: string;
   background_image: string;
   parent_platforms: PlatformObject[];
   metacritic: number;

@@ -29,6 +29,11 @@ class API_Client<T> {
     axiosInstance
       .get<RAWGRequestResponse<T>>(this.endpoint, config)
       .then((res) => res.data);
+
+  getOne = (resourceId?: number) =>
+    axiosInstance
+      .get<T>(this.endpoint + "/" + resourceId)
+      .then((res) => res.data);
 }
 
 export default API_Client;
