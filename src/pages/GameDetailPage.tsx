@@ -1,6 +1,7 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import userGameDetailsQuery from "../hooks/useGameDetailQuery";
 import useGameStore from "../stores/store";
+import TextExpander from "../components/TextExpander";
 
 const GameDetailPage = () => {
   const gameId = useGameStore((selector) => selector.gameId);
@@ -13,7 +14,7 @@ const GameDetailPage = () => {
   return (
     <Box p={6}>
       <Heading>{gameDetail?.name}</Heading>
-      <Text>{gameDetail?.description_raw}</Text>
+      <TextExpander text={gameDetail?.description_raw!} />
     </Box>
   );
 };
